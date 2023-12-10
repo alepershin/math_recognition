@@ -73,6 +73,9 @@ if not filename is None:                       # Выполнение блока
             if pred <= 9:
                 cv.putText(im, str(pred), (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
 
+            if pred == 0:
+                cv.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), 3)
+
             if pred == 1:
                 cv.rectangle(im, (x, y), (x + w, y + h), (255, 0, 0), 3)
 
