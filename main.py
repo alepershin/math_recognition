@@ -7,7 +7,7 @@ from PIL import Image
 
 st.title('Проверка письменных работ по математике')
 
-filename = st.file_uploader('Load an image', type=['png', 'jpg'])  # Добавление загрузчика файлов
+filename = st.file_uploader('Load an image', type=['jpg'])  # Добавление загрузчика файлов
 
 if not filename is None:                       # Выполнение блока, если загружено изображение
     image = Image.open(filename)
