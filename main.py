@@ -70,7 +70,7 @@ if not filename is None:                       # Выполнение блока
             # Получение и вывод индекса самого большого элемента (это номер распознанного символа)
             pred = np.argmax(prediction[0])
 
-            if pred <= 9:
+            if pred <= 9 or pred == 33:
                 cv.putText(im, str(pred), (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
 
             if pred == 0:
@@ -102,5 +102,8 @@ if not filename is None:                       # Выполнение блока
 
             if pred == 9:
                 cv.rectangle(im, (x, y), (x + w, y + h), (255, 200, 0), 3)
+
+            if pred > 9:
+                cv.rectangle(im, (x, y), (x + w, y + h), (200, 200, 200), 3)
 
     st.image(im)
