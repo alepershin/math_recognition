@@ -1,13 +1,19 @@
 import streamlit as st
 import cv2 as cv
 import numpy as np
+import os
 
 from tensorflow.keras.models import load_model
 from PIL import Image
+from pathlib import Path
 
 st.title('Проверка письменных работ по математике')
 
 filename = st.file_uploader('Load an image', type=['jpg'])  # Добавление загрузчика файлов
+
+for i in range(47):
+    if not Path(f"{i}").exists():
+        os.mkdir(f"{i}")
 
 if not filename is None:                       # Выполнение блока, если загружено изображение
     image = Image.open(filename)
@@ -30,6 +36,8 @@ if not filename is None:                       # Выполнение блока
 
     # Размеры картинки для распознавания
     IMG_WIDTH, IMG_HEIGHT = 28, 28
+
+    j = 0
 
     # Перебираем все контуры и изображаем рамки у тех из них, у которых ширина или высота больше 7 пикселей
     for cnt in contours:
@@ -70,40 +78,14 @@ if not filename is None:                       # Выполнение блока
             # Получение и вывод индекса самого большого элемента (это номер распознанного символа)
             pred = np.argmax(prediction[0])
 
-            if pred <= 9 or pred == 33:
+            if pred <= 9:
                 cv.putText(im, str(pred), (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
 
-            if pred == 0:
-                cv.rectangle(im, (x, y), (x + w, y + h), (0, 255, 0), 3)
+            cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 200), 3)
 
-            if pred == 1:
-                cv.rectangle(im, (x, y), (x + w, y + h), (255, 0, 0), 3)
+            j += 1
 
-            if pred == 2:
-                cv.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 3)
-
-            if pred == 3:
-                cv.rectangle(im, (x, y), (x + w, y + h), (100, 255, 0), 3)
-
-            if pred == 4:
-                cv.rectangle(im, (x, y), (x + w, y + h), (255, 100, 0), 3)
-
-            if pred == 5:
-                cv.rectangle(im, (x, y), (x + w, y + h), (0, 100, 255), 3)
-
-            if pred == 6:
-                cv.rectangle(im, (x, y), (x + w, y + h), (255, 200, 0), 3)
-
-            if pred == 7:
-                cv.rectangle(im, (x, y), (x + w, y + h), (0, 200, 255), 3)
-
-            if pred == 8:
-                cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 0), 3)
-
-            if pred == 9:
-                cv.rectangle(im, (x, y), (x + w, y + h), (255, 200, 0), 3)
-
-            if pred > 9:
-                cv.rectangle(im, (x, y), (x + w, y + h), (200, 200, 200), 3)
+            image = Image.fromarray(image)
+            image = image.save(f"{pred}/{j}.jpg")
 
     st.image(im)
