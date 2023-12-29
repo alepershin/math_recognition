@@ -95,12 +95,12 @@ if not filename is None:                       # Выполнение блока
 
     st.image(im)
 
-shutil.make_archive("dataset", 'zip', "dataset")
+    shutil.make_archive("dataset", 'zip', "dataset")
 
-with open("dataset.zip", 'rb') as f:
-    bytes = f.read()
-    b64 = base64.b64encode(bytes).decode()
-    href = f'<a href="data:file/zip;base64,{b64}" download=\'dataset\'>\
-            download file \
-        </a>'
-    st.markdown(href, unsafe_allow_html=True)
+    with open("dataset.zip", 'rb') as f:
+        bytes = f.read()
+        b64 = base64.b64encode(bytes).decode()
+        href = f'<a href="data:file/zip;base64,{b64}" download=\'dataset\'>\
+                download file \
+            </a>'
+        st.markdown(href, unsafe_allow_html=True)
