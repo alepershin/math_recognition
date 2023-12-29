@@ -2,6 +2,8 @@ import streamlit as st
 import cv2 as cv
 import numpy as np
 import os
+import shutil
+import base64
 
 from tensorflow.keras.models import load_model
 from PIL import Image
@@ -11,9 +13,12 @@ st.title('Проверка письменных работ по математи
 
 filename = st.file_uploader('Load an image', type=['jpg'])  # Добавление загрузчика файлов
 
+if not Path("dataset").exists():
+  os.mkdir("dataset")
+
 for i in range(47):
-    if not Path(f"{i}").exists():
-        os.mkdir(f"{i}")
+    if not Path(f"dataset/{i}").exists():
+        os.mkdir(f"dataset/{i}")
 
 if not filename is None:                       # Выполнение блока, если загружено изображение
     image = Image.open(filename)
@@ -86,6 +91,16 @@ if not filename is None:                       # Выполнение блока
             j += 1
 
             image = Image.fromarray(image)
-            image = image.save(f"{pred}/{j}.jpg")
+            image = image.save(f"dataset/{pred}/{j}.jpg")
 
     st.image(im)
+
+shutil.make_archive("dataset", 'zip', "dataset")
+
+with open("dataset.zip", 'rb') as f:
+    bytes = f.read()
+    b64 = base64.b64encode(bytes).decode()
+    href = f'<a href="data:file/zip;base64,{b64}" download=\'dataset\'>\
+            download file \
+        </a>'
+    st.markdown(href, unsafe_allow_html=True)
