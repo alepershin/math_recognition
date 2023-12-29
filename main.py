@@ -93,7 +93,7 @@ if not filename is None:                       # Выполнение блока
             j += 1
 
             image = Image.fromarray(image)
-            image = image.save(f"dataset/{pred}/{j}.jpg")
+            image = image.save(f"dataset/{pred}/new_{j}.jpg")
 
     st.image(im)
 
