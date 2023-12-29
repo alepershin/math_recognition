@@ -100,7 +100,7 @@ if not filename is None:                       # Выполнение блока
     with open("dataset.zip", 'rb') as f:
         bytes = f.read()
         b64 = base64.b64encode(bytes).decode()
-        href = f'<a href="data:file/zip;base64,{b64}" download=\'dataset\'>\
+        href = f'<a href="data:file/zip;base64,{b64}" download=\'dataset.zip\'>\
                 download file \
             </a>'
         st.markdown(href, unsafe_allow_html=True)
