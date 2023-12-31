@@ -15,6 +15,9 @@ filename = st.file_uploader('Load an image', type=['jpg'])  # Добавлени
 
 if not Path("dataset").exists():
   os.mkdir("dataset")
+else:
+  shutil.rmtree("dataset")
+  os.mkdir("dataset")
 
 for i in range(47):
     if not Path(f"dataset/{i}").exists():
@@ -37,7 +40,7 @@ if not filename is None:                       # Выполнение блока
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
-    model = load_model('model_20231209.keras')
+    model = load_model('model_20233112.keras')
 
     # Размеры картинки для распознавания
     IMG_WIDTH, IMG_HEIGHT = 28, 28
