@@ -40,7 +40,7 @@ if not filename is None:                       # Выполнение блока
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
-    model = load_model('model_20233112.keras')
+    model = load_model('model_20240101.keras')
 
     # Размеры картинки для распознавания
     IMG_WIDTH, IMG_HEIGHT = 28, 28
