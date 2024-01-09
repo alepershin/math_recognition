@@ -48,7 +48,7 @@ if not filename is None:                       # Выполнение блока
     imgray = cv.bitwise_not(imgray)
 
     # Находим контуры
-    ret, thresh = cv.threshold(imgray, 140, 255, 0)
+    ret, thresh = cv.threshold(imgray, 135, 255, 0)
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
