@@ -48,7 +48,7 @@ if not filename is None:                       # Выполнение блока
     imgray = cv.bitwise_not(imgray)
 
     # Находим контуры
-    ret, thresh = cv.threshold(imgray, 110, 255, 0)
+    ret, thresh = cv.threshold(imgray, 111, 255, 0)
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
@@ -96,7 +96,7 @@ if not filename is None:                       # Выполнение блока
             # Распознавание примера
             prediction = model.predict(digit)
 
-            if max(prediction[0]) < 0.5:
+            if max(prediction[0]) < 0.4:
                 continue
 
             # Получение и вывод индекса самого большого элемента (это номер распознанного символа)
