@@ -96,7 +96,7 @@ if not filename is None:                       # Выполнение блока
             # Распознавание примера
             prediction = model.predict(digit)
 
-            if max(prediction[0]) < 0.7:
+            if max(prediction[0]) < 0.5:
                 continue
 
             # Получение и вывод индекса самого большого элемента (это номер распознанного символа)
