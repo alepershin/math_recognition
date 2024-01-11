@@ -6,7 +6,7 @@ import shutil
 import base64
 
 from tensorflow.keras.models import load_model
-from PIL import Image
+from PIL import Image, ImageEnhance
 from pathlib import Path
 
 st.title('Проверка письменных работ по математике')
@@ -37,6 +37,9 @@ for i in range(2):
 
 if not filename is None:                       # Выполнение блока, если загружено изображение
     image = Image.open(filename)
+    st.image(image)
+    enhancer = ImageEnhance.Contrast(image)
+    image = enhancer.enhance(2)
     st.image(image)
     image = image.save("img.jpg")
     im = cv.imread("img.jpg")
