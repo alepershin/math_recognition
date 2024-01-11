@@ -39,14 +39,17 @@ if not filename is None:                       # Выполнение блока
     image = Image.open(filename)
     st.image(image)
     image = image.save("img.jpg")
-    im = cv.imread("img.jpg")
+    im = cv.imread("img.jpg", cv.IMREAD_UNCHANGED)
 
     # Переводим изображение в оттенки серого
-    imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
+    #imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
 
     # Инвертируем цвета (черное становится белым и наоборот)
-    imgray = cv.bitwise_not(imgray)
+    #imgray = cv.bitwise_not(imgray)
 
+    # Извлекаем синий канал  
+    imgray = im[:,:,0]
+  
     # Находим контуры
     ret, thresh = cv.threshold(imgray, 110, 255, 0)
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
