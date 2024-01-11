@@ -42,13 +42,13 @@ if not filename is None:                       # Выполнение блока
     im = cv.imread("img.jpg", cv.IMREAD_UNCHANGED)
 
     # Переводим изображение в оттенки серого
-    #imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
+    imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
 
     # Инвертируем цвета (черное становится белым и наоборот)
-    #imgray = cv.bitwise_not(imgray)
+    imgray = cv.bitwise_not(imgray)
 
     # Извлекаем синий канал  
-    imgray = im[:,:,0]
+    #imgray = im[:,:,0]
   
     # Находим контуры
     ret, thresh = cv.threshold(imgray, 110, 255, 0)
