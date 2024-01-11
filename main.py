@@ -40,6 +40,7 @@ if not filename is None:                       # Выполнение блока
     st.image(image)
     image = image.save("img.jpg")
     im = cv.imread("img.jpg", cv.IMREAD_UNCHANGED)
+    st.image(im)
 
     # Переводим изображение в оттенки серого
     imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
