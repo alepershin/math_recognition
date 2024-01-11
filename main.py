@@ -38,8 +38,12 @@ for i in range(2):
 if not filename is None:                       # Выполнение блока, если загружено изображение
     image = Image.open(filename)
     st.image(image)
-    image = image.save("img.png")
-    im = cv.imread("img.png", cv.IMREAD_UNCHANGED)
+    image = image.save("img.jpg")
+
+    image = Image.open("img.jpg")
+    st.image(image)
+  
+    im = cv.imread("img.jpg", cv.IMREAD_UNCHANGED)
     st.image(im)
 
     # Переводим изображение в оттенки серого
