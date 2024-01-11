@@ -39,9 +39,9 @@ if not filename is None:                       # Выполнение блока
     image = Image.open(filename)
     st.image(image)
     enhancer = ImageEnhance.Contrast(image)
-    image = enhancer.enhance(2)
-    st.image(image)
-    image = image.save("img.jpg")
+    image_new = enhancer.enhance(2)
+    st.image(image_new)
+    image_new = image_new.save("img.jpg")
     im = cv.imread("img.jpg")
 
     # Переводим изображение в оттенки серого
