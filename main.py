@@ -43,13 +43,14 @@ if not filename is None:                       # Выполнение блока
     st.image(im)
 
     # Переводим изображение в оттенки серого
-    imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
+    #imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
 
     # Инвертируем цвета (черное становится белым и наоборот)
-    imgray = cv.bitwise_not(imgray)
+    #imgray = cv.bitwise_not(imgray)
 
     # Извлекаем синий канал  
-    #imgray = im[:,:,0]
+    imgray = im[:,:,2]
+    st.image(imgray)
   
     # Находим контуры
     ret, thresh = cv.threshold(imgray, 110, 255, 0)
