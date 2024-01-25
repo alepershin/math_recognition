@@ -29,7 +29,7 @@ if not Path("dataset/rect_56_28").exists():
 if not Path("dataset/rect_112_28").exists():
   os.mkdir("dataset/rect_112_28")
 
-for i in range(2):
+for i in range(3):
     if not Path(f"dataset/rect_56_28/{i}").exists():
         os.mkdir(f"dataset/rect_56_28/{i}")
     if not Path(f"dataset/rect_112_28/{i}").exists():
