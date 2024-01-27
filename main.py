@@ -6,7 +6,7 @@ import shutil
 import base64
 
 from tensorflow.keras.models import load_model
-from PIL import Image
+from PIL import Image, ImageEnhance
 from pathlib import Path
 
 st.title('Проверка письменных работ по математике')
@@ -29,7 +29,7 @@ if not Path("dataset/rect_56_28").exists():
 if not Path("dataset/rect_112_28").exists():
   os.mkdir("dataset/rect_112_28")
 
-for i in range(2):
+for i in range(3):
     if not Path(f"dataset/rect_56_28/{i}").exists():
         os.mkdir(f"dataset/rect_56_28/{i}")
     if not Path(f"dataset/rect_112_28/{i}").exists():
@@ -38,7 +38,10 @@ for i in range(2):
 if not filename is None:                       # Выполнение блока, если загружено изображение
     image = Image.open(filename)
     st.image(image)
-    image = image.save("img.jpg")
+    enhancer = ImageEnhance.Contrast(image)
+    image_new = enhancer.enhance(2)
+    st.image(image_new)
+    image_new = image_new.save("img.jpg")
     im = cv.imread("img.jpg")
 
     # Переводим изображение в оттенки серого
@@ -48,7 +51,7 @@ if not filename is None:                       # Выполнение блока
     imgray = cv.bitwise_not(imgray)
 
     # Находим контуры
-    ret, thresh = cv.threshold(imgray, 130, 255, 0)
+    ret, thresh = cv.threshold(imgray, 120, 255, 0)
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
@@ -63,7 +66,7 @@ if not filename is None:                       # Выполнение блока
 
     for cnt in contours:
         x, y, w, h = cv.boundingRect(cnt)
-        if w < IMG_WIDTH / 2 and h < IMG_HEIGHT / 2:
+        if w < IMG_WIDTH and h < IMG_HEIGHT:
             continue
 
         image = thresh[y:y + h, x:x + w]
@@ -171,6 +174,8 @@ if not filename is None:                       # Выполнение блока
                 cv.putText(im, "-", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2)
             if pred == 1:
                 cv.putText(im, "sqrt", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
+            if pred == 2:
+                cv.putText(im, "Answer", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 255), 2)
 
             cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 200), 3)
 
