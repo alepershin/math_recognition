@@ -129,7 +129,7 @@ if not filename is None:                       # Выполнение блока
                 cv.putText(im, "a", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2)
             elif pred == 49:
                 cv.putText(im, "sqrt", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2)
-            elif pred == 53:
+            elif pred == 48:
                 cv.putText(im, "Answer", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 100, 0), 2)
 
             cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 200), 3)
