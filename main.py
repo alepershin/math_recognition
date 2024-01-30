@@ -19,7 +19,7 @@ else:
   shutil.rmtree("dataset")
   os.mkdir("dataset")
 
-for i in range(53):
+for i in range(54):
     if not Path(f"dataset/{i}").exists():
         os.mkdir(f"dataset/{i}")
 
@@ -55,7 +55,7 @@ if not filename is None:                       # Выполнение блока
     contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
-    model = load_model('model.keras')
+    model = load_model('model_28_28.keras')
     model_56_28 = load_model('model_56_28.keras')
     model_112_28 = load_model('model_112_28.keras')
 
@@ -129,8 +129,8 @@ if not filename is None:                       # Выполнение блока
                 cv.putText(im, "a", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2)
             elif pred == 49:
                 cv.putText(im, "sqrt", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2)
-            elif pred == 52:
-                cv.putText(im, "r_b", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 0, 0), 2)
+            elif pred == 48:
+                cv.putText(im, "Answer", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (255, 100, 0), 2)
 
             cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 200), 3)
 
