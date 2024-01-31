@@ -176,7 +176,11 @@ if not filename is None:                       # Выполнение блока
                 cv.putText(im, "sqrt", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
             if pred == 2:
                 cv.putText(im, "Answer", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 255), 2)
-
+            if pred == 3:
+                cv2.putText(im, "no", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
+            if pred == 4:
+                cv2.putText(im, "solution", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
+              
             cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 200), 3)
 
             j += 1
