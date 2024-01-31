@@ -29,7 +29,7 @@ if not Path("dataset/rect_56_28").exists():
 if not Path("dataset/rect_112_28").exists():
   os.mkdir("dataset/rect_112_28")
 
-for i in range(3):
+for i in range(6):
     if not Path(f"dataset/rect_56_28/{i}").exists():
         os.mkdir(f"dataset/rect_56_28/{i}")
     if not Path(f"dataset/rect_112_28/{i}").exists():
@@ -56,7 +56,7 @@ if not filename is None:                       # Выполнение блока
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
     model = load_model('model_28_28.keras')
-    model_56_28 = load_model('model_56_28.keras')
+    model_56_28 = load_model('model_56_28_new.keras')
     model_112_28 = load_model('model_112_28.keras')
 
     # Размеры картинки для распознавания
@@ -176,13 +176,19 @@ if not filename is None:                       # Выполнение блока
                 cv.putText(im, "sqrt", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 255), 2)
             if pred == 2:
                 cv.putText(im, "Answer", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 255), 2)
+            if pred == 3:
+                cv.putText(im, "No", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 255), 2)
+            if pred == 4:
+                cv.putText(im, "solution", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 255), 2)
+            if pred == 5:
+                cv.putText(im, "check", (x, y), cv.FONT_HERSHEY_SIMPLEX, 3, (100, 255, 255), 2)
 
             cv.rectangle(im, (x, y), (x + w, y + h), (200, 255, 200), 3)
 
             j += 1
 
             image = Image.fromarray(image)
-            image = image.save(f"dataset/rect_56_28/{pred}/new7_{j}.jpg")
+            image = image.save(f"dataset/rect_56_28/{pred}/new31_{j}.jpg")
 
         else:
 
