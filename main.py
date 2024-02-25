@@ -56,7 +56,7 @@ if not filename is None:                       # Выполнение блока
 
     # Загрузим модель для распознавания цифр и букв латинского алфавита
     model = load_model('model_28_28.keras')
-    model_56_28 = load_model('model_56_28_new.keras')
+    model_56_28 = load_model('model_56_28.keras')
     model_112_28 = load_model('model_112_28.keras')
 
     # Размеры картинки для распознавания
